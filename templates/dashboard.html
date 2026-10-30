@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · CyberSakhi AI{% endblock %}
+{% block content %}
+<section class="page-intro"><span class="eyebrow">YOUR OVERVIEW</span><h1>A clearer view of <span>online safety.</span></h1><p>These figures summarize scans saved in this app on this device.</p></section>
+<section class="stats-grid">
+  <article class="stat-card"><span class="stat-label">Total scans</span><strong>{{ stats.total }}</strong><span class="stat-foot">Messages checked</span><div class="stat-icon pink">⌕</div></article>
+  <article class="stat-card"><span class="stat-label">High indicators</span><strong>{{ stats.high }}</strong><span class="stat-foot">Heuristic high risk</span><div class="stat-icon rose">!</div></article>
+  <article class="stat-card"><span class="stat-label">Review carefully</span><strong>{{ stats.medium }}</strong><span class="stat-foot">Medium indicator score</span><div class="stat-icon peach">♡</div></article>
+  <article class="stat-card"><span class="stat-label">Few indicators</span><strong>{{ stats.low }}</strong><span class="stat-foot">Not a safety guarantee</span><div class="stat-icon green">✓</div></article>
+</section>
+<section class="panel table-panel"><div class="panel-title"><div><h2>Recent scans</h2><p>Latest saved results</p></div><a class="text-link" href="{{ url_for('history') }}">View history →</a></div>
+{% if scans %}<div class="table-scroll"><table><thead><tr><th>Message preview</th><th>Result</th><th>Risk</th><th>Score</th><th>Scanned at</th></tr></thead><tbody>{% for scan in scans %}<tr><td>{{ scan.message|truncate(70) }}</td><td>{{ scan.prediction }}</td><td><span class="table-badge">{{ scan.risk }}</span></td><td>{{ scan.score }}</td><td>{{ scan.created_at }}</td></tr>{% endfor %}</tbody></table></div>{% else %}<div class="empty-state large"><div>✿</div><h3>Your dashboard is ready</h3><p>Scan your first message to see your stats here.</p><a class="btn btn-primary" href="{{ url_for('scanner') }}">Scan a message</a></div>{% endif %}</section>
+{% endblock %}

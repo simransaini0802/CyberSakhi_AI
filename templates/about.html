@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}About · CyberSakhi AI{% endblock %}
+{% block content %}
+<section class="page-intro"><span class="eyebrow">ABOUT THE PROJECT</span><h1>Technology with a <span>human touch.</span></h1><p>CyberSakhi AI is an educational MCA project exploring NLP techniques for safer digital communication.</p></section>
+<section class="panel content-panel"><h2>Project objectives</h2><ul class="pretty-list"><li>Explore text cleaning and tokenization.</li><li>Identify common suspicious message patterns.</li><li>Build a Flask interface with scan history and a dashboard.</li><li>Prepare a labelled dataset and evaluate a future ML classifier responsibly.</li><li>Explain system indicators clearly rather than presenting an unexplained score.</li></ul><h2>Current implementation</h2><p>The starter version uses transparent regular-expression rules for selected patterns and URLs. It does not yet include a trained machine-learning model, a live threat-intelligence service, or verified URL reputation checks.</p><h2>Suggested next phase</h2><p>Use a documented, appropriately licensed dataset to train a TF-IDF classifier. Evaluate it with precision, recall, F1-score, and a confusion matrix on held-out data. Keep the heuristic baseline separate from the trained model.</p></section>
+{% endblock %}

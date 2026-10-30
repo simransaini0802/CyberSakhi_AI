@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS scans (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    message TEXT NOT NULL,
+    prediction TEXT NOT NULL,
+    risk TEXT NOT NULL,
+    score INTEGER NOT NULL,
+    created_at TEXT NOT NULL
+);

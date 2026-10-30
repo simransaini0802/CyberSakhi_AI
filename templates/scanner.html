@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Message Scanner · CyberSakhi AI{% endblock %}
+{% block content %}
+<section class="page-intro"><span class="eyebrow">MESSAGE CHECK</span><h1>Let’s take a closer look. <span>♡</span></h1><p>Paste the message you’re unsure about. Don’t include passwords, OTPs, or banking details.</p></section>
+<div class="scanner-layout">
+  <section class="panel scanner-panel">
+    <div class="panel-title"><span class="round-icon">✉</span><div><h2>Message scanner</h2><p>We’ll check for common warning patterns.</p></div></div>
+    <form method="post" id="scan-form">
+      <label for="message">Message text</label>
+      <textarea id="message" name="message" maxlength="10000" placeholder="Paste the SMS, email, or chat message here…" required>{{ message }}</textarea>
+      <div class="textarea-meta"><span>Keep private information out</span><span id="char-count">0 / 10,000</span></div>
+      <button class="btn btn-primary full-width" type="submit">Analyze message <span>✧</span></button>
+    </form>
+    <div class="example-row"><span>Try an example:</span><button type="button" class="text-button" data-example="Congratulations! You have won a prize. Claim your prize immediately by clicking this link.">Prize message</button><button type="button" class="text-button" data-example="Your package delivery is scheduled for tomorrow between 10 AM and 2 PM.">Normal update</button></div>
+  </section>
+  <aside class="panel side-tip"><div class="tip-flower">✿</div><h3>Before you paste</h3><ul><li>Remove names and personal details.</li><li>Never share your OTP or password.</li><li>Don’t open a suspicious link to test it.</li></ul><div class="soft-note">You deserve to feel safe online. Take your time.</div></aside>
+</div>
+{% if result %}
+<section class="result-panel panel" id="results">
+  <div class="result-heading"><div><span class="eyebrow">SCAN SUMMARY</span><h2>Your message check</h2></div><span class="risk-badge risk-{{ result.risk|lower|replace(' ', '-') }}">{{ result.risk }}</span></div>
+  <div class="result-summary"><div class="score-circle"><strong>{{ result.score }}</strong><span>heuristic<br>score / 100</span></div><div><h3>{{ result.prediction }}</h3><p>{{ result.method }}</p><p class="small-muted">This score is not a probability and has not been calibrated against a test dataset.</p></div></div>
+  <h3 class="subheading">What we noticed</h3>
+  {% if result.indicators %}<div class="indicator-list">{% for item in result.indicators %}<div class="indicator"><span class="indicator-dot">!</span><div><strong>{{ item.category }}</strong><p>{{ item.details }}</p></div></div>{% endfor %}</div>{% else %}<p class="empty-state">No configured phrase patterns matched. This does not prove the message is safe.</p>{% endif %}
+  {% if result.urls %}<h3 class="subheading">URL indicators</h3>{% for item in result.urls %}<div class="url-item"><strong>{{ item.url }}</strong><ul>{% for reason in item.reasons %}<li>{{ reason }}</li>{% endfor %}</ul></div>{% endfor %}{% endif %}
+  <div class="recommendation"><strong>✿ Safer next step</strong><p>{{ result.recommendation }}</p></div>
+</section>
+{% endif %}
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/scanner.js') }}"></script>{% endblock %}

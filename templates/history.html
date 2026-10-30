@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Scan History · CyberSakhi AI{% endblock %}
+{% block content %}
+<section class="page-intro"><span class="eyebrow">SAVED ON THIS DEVICE</span><h1>Your scan <span>history.</span></h1><p>Scan history is stored in the local SQLite database for this prototype.</p></section>
+<section class="panel table-panel"><div class="panel-title"><div><h2>Previous checks</h2><p>Up to 100 recent scans</p></div><a class="btn btn-soft btn-small" href="{{ url_for('scanner') }}">+ New scan</a></div>
+{% if scans %}<div class="table-scroll"><table><thead><tr><th>Message preview</th><th>Prediction</th><th>Risk</th><th>Score</th><th>Date</th></tr></thead><tbody>{% for scan in scans %}<tr><td>{{ scan.message|truncate(85) }}</td><td>{{ scan.prediction }}</td><td><span class="table-badge">{{ scan.risk }}</span></td><td>{{ scan.score }}</td><td>{{ scan.created_at }}</td></tr>{% endfor %}</tbody></table></div>{% else %}<div class="empty-state large"><div>♡</div><h3>No scans yet</h3><p>Your completed scans will appear here.</p></div>{% endif %}</section>
+<div class="notice"><strong>Privacy note</strong><p>History currently stores the full message locally. Avoid entering sensitive or identifying information. To remove all history, stop the app and delete <code>database/cybersakhi.db</code>.</p></div>
+{% endblock %}

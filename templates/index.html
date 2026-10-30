@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}CyberSakhi AI · Safer online, together{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">YOUR DIGITAL SAFETY COMPANION</span>
+    <h1>Be kind to yourself.<br><span>Be careful online.</span></h1>
+    <p>Unsure about a message? Let CyberSakhi help you spot warning signs, understand the reasons, and choose a safer next step.</p>
+    <div class="hero-actions"><a class="btn btn-primary" href="{{ url_for('scanner') }}">Scan a message <span>↗</span></a><a class="btn btn-soft" href="{{ url_for('safety') }}">Explore safety tips</a></div>
+    <div class="trust-line"><span>♡</span> Your message is analyzed locally by this app and saved to its local scan history.</div>
+  </div>
+  <div class="hero-art">
+    <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+    <div class="shield-card"><div class="shield">✓</div><span class="spark spark-a">✦</span><span class="spark spark-b">✿</span><span class="spark spark-c">✧</span><div class="shield-label">Think before<br>you click</div></div>
+    <div class="float-note note-top">♡ Stay alert</div><div class="float-note note-bottom">✿ You’ve got this</div>
+  </div>
+</section>
+<section class="section-heading"><span class="eyebrow">A LITTLE MORE CONFIDENCE</span><h2>Safety that feels simple</h2><p>Helpful signals, clear explanations, no scary jargon.</p></section>
+<section class="feature-grid">
+  <article class="feature-card"><div class="feature-icon pink">⌕</div><h3>Message scanner</h3><p>Paste a suspicious SMS, email, or chat message to inspect common warning signs.</p><a href="{{ url_for('scanner') }}">Try the scanner →</a></article>
+  <article class="feature-card"><div class="feature-icon green">✧</div><h3>Understand the why</h3><p>See which patterns were matched instead of receiving a mysterious label alone.</p><a href="{{ url_for('about') }}">How it works →</a></article>
+  <article class="feature-card"><div class="feature-icon peach">♡</div><h3>Build safer habits</h3><p>Learn to verify requests, protect OTPs, and avoid pressure-driven decisions.</p><a href="{{ url_for('safety') }}">Read the guide →</a></article>
+</section>
+<div class="notice"><strong>A gentle reminder</strong><p>This is an educational prototype using transparent rules, not a trained or validated security model. “No strong indicators” does not mean a message is safe.</p></div>
+{% endblock %}
